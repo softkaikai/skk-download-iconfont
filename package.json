@@ -1,0 +1,29 @@
+{
+  "name": "skk-download-iconfont",
+  "version": "1.0.0",
+  "description": "download iconfont",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/softkaikai/skk-download-iconfont.git"
+  },
+  "bin": {
+    "sdi": "./index.js"
+  },
+  "author": "softkaikai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/softkaikai/skk-download-iconfont/issues"
+  },
+  "homepage": "https://github.com/softkaikai/skk-download-iconfont#readme",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "commander": "^2.20.0",
+    "open": "^6.3.0",
+    "ora": "^3.4.0",
+    "unzip": "^0.1.11"
+  }
+}
