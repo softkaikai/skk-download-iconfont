@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 const unzip = require('unzip');
 const os = require('os');
@@ -89,7 +89,7 @@ function copyFilesToProject(source) {
     let destPath = global.skk_config.projectIconfontPath[global.skk_config.defaultProject];
     destPath = path.normalize(destPath);
 
-    console.log(chalk.blue('开始拷贝文件到指定文件夹中...'));
+    console.log(chalk.yellow('开始拷贝文件到指定文件夹中...'));
     return new Promise((resolve, reject) => {
         fs.readdir(source, (err, files) => {
             if (err) reject('拷贝文件夹读取出错');
@@ -97,7 +97,7 @@ function copyFilesToProject(source) {
             Promise.all(
                 files.map(file => {
                     return new Promise((resolve, reject) => {
-                        fs.copyFile(path.join(source, file), path.join(destPath, file), (err) => {
+                        fs.copy(path.join(source, file), path.join(destPath, file), (err) => {
                             if (err) return reject('拷贝文件到项目出错');
                             resolve();
                         })
@@ -106,7 +106,7 @@ function copyFilesToProject(source) {
             ).catch((err) => {
                 reject(err)
             }).then(() => {
-                console.log(chalk.blue('文件拷贝完毕'));
+                console.log(chalk.green('文件拷贝完毕'));
                 resolve();
             })
         })
@@ -161,14 +161,14 @@ function getLatestZipPath() {
 function unzipDownload() {
     return new Promise((resolve, reject) => {
         getLatestZipPath().then((zipPath) => {
-            console.log(chalk.blue('开始解压压缩包...'));
+            console.log(chalk.yellow('开始解压压缩包...'));
             const browserDownloadUnzipPath = getBrowserDownloadUnzipPath();
             const readStream = fs.createReadStream(zipPath);
             const writeStream = unzip.Extract({path: browserDownloadUnzipPath});
             writeStream.on('finish', () => {
                 // 确保数据已经写完了
                 setTimeout(() => {
-                    console.log(chalk.blue('解压完毕'));
+                    console.log(chalk.green('解压完毕'));
                     resolve('解压完毕');
                 }, 500)
             });
@@ -208,7 +208,7 @@ function watchDownloadDirectory() {
             watcher.close();
             // 等待半秒，让数据填充完毕
             setTimeout(() => {
-                console.log(chalk.blue('文件下载完毕'));
+                console.log(chalk.green('文件下载完毕'));
                 unzipAndCopy();
             }, 500);
         }
