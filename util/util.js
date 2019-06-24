@@ -86,7 +86,12 @@ function getUnzipDirectory() {
 
 // 拷贝iconfont到项目中去
 function copyFilesToProject(source) {
-    let destPath = global.skk_config.projectIconfontPath[global.skk_config.defaultProject];
+    const projectData = global.skk_config.projectIconfontPath[global.skk_config.defaultProject];
+    if (!projectData) {
+        console.log(chalk.red(`没有找到${global.skk_config.defaultProject}项目有关配置数据`));
+        return Promise.reject();
+    }
+    let destPath = projectData.path;
     destPath = path.normalize(destPath);
 
     console.log(chalk.yellow('开始拷贝文件到指定文件夹中...'));

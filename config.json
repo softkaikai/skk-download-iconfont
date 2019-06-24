@@ -4,12 +4,15 @@
     "downloadLink": "https://www.iconfont.cn/manage/index?spm=a313x.7781069.1998910419.11&manage_type=myprojects&projectId=1218627&keyword=",
     "defaultProject": "undunion",
     "projectIconfontPath": {
-        "undunion": "C:\\Users\\kaikai\\Downloads\\fonts"
+        "undunion": {
+            "path": "C:\\Users\\kaikai\\Downloads\\fonts",
+            "pid": "1231201"
+        },
+        "wechat": {
+            "path": "C:\\Users\\kaikai\\Downloads\\fonts",
+            "pid": "1218627"
+        }
     },
     "cookie": "",
-    "httpOptions": {
-        "pid": "",
-        "t": "",
-        "ctoken": ""
-    }
+    "ctoken": "zEAUVuuDwce-WM_MhsfW3i6W"
 }

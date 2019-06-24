@@ -15,8 +15,17 @@ function getZipRequestPath(iconData) {
 
         return '/api/project/download.zip?' + querystring.stringify({
             ids,
-            ctoken: global.skk_config.httpOptions.ctoken
+            ctoken: global.skk_config.ctoken
         })
+    }
+}
+
+function getPathQuery() {
+    const projectData = global.skk_config.projectIconfontPath[global.skk_config.defaultProject];
+    return {
+        pid: projectData.pid,
+        t: Date.now(),
+        ctoken: global.skk_config.ctoken
     }
 }
 
@@ -27,7 +36,7 @@ function getDownloadZip() {
     const getJsonOpts = {
         hostname: 'www.iconfont.cn',
         port: 443,
-        path: '/api/project/detail.json?' + querystring.stringify(global.skk_config.httpOptions),
+        path: '/api/project/detail.json?' + querystring.stringify(getPathQuery()),
         headers: {
             'Cookie': global.skk_config.cookie,
             'Accept': 'application/json, text/javascript, */*; q=0.01',
